@@ -5,14 +5,14 @@ import { MovieContext } from "../context/MovieContext";
 import { toastWarnNotify } from "../helpers/ToastNotify";
 
 // const API_KEY = "d6278b3dc3e6f8f8376a89851c3f8c8f";
-const API_KEY = process.env.REACT_APP_TMDB_KEY;
-const SEARCH_API = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=`;
 
 const Main = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const { currentUser } = useContext(AuthContext);
   const { movies, getMovies, loading } = useContext(MovieContext);
 
+  const API_KEY = process.env.REACT_APP_TMDB_KEY;
+  const SEARCH_API = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${searchTerm}`;
   const handleSubmit = (e) => {
     e.preventDefault();
     if (searchTerm && currentUser) {
